@@ -19,22 +19,22 @@ const App = () => {
         dispatch({type: 'INIT_LOCAL_STORAGE'});
     }, []);
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     const signal = controller.signal;
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
 
-    //     fetchAPI('planetary/apod', signal)
-    //         .then(res => {
-    //             dispatch({type: 'UPDATE_ASTRONOMY_PICTURE_OF_THE_DAY', payload: res});
-    //         })
-    //         .catch(err => {
-    //             console.log('err  :', err);
-    //         })
+        fetchAPI('planetary/apod', signal)
+            .then(res => {
+                dispatch({type: 'UPDATE_ASTRONOMY_PICTURE_OF_THE_DAY', payload: res});
+            })
+            .catch(err => {
+                console.log('err  :', err);
+            })
 
-    //     return () => {
-    //         controller.abort();
-    //     }
-    // }, []);
+        return () => {
+            controller.abort();
+        }
+    }, []);
 
 
     useEffect(() => {
