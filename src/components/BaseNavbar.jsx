@@ -1,9 +1,12 @@
 import {Link as RouterLink} from 'react-router-dom';
-import { AppBar,Box,Toolbar,IconButton } from '@mui/material';
+import { Breadcrumbs, AppBar,Box,Toolbar,IconButton } from '@mui/material';
+import LinkTag from './LinkTag';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import CollectionsIcon from '@mui/icons-material/Collections';
 
-const BaseNavBar = ({handleOpenMenu, children}) => {
+const BaseNavBar = ({ handleOpenMenu,matches }) => {
     return ( 
         <Box sx={{ flexGrow: 1 }}>
             <AppBar 
@@ -36,7 +39,35 @@ const BaseNavBar = ({handleOpenMenu, children}) => {
                     </Box>
 
                     {/* extra components based on page */}
-                    {children}
+                    {/* home / mars-phote / apod --> link tags */}
+                    {!matches && 
+                        <Box
+                            role="presentation"
+                            sx={{
+                                mr: {
+                                    xs: 3,
+                                    sm: 3,
+                                    md: 3,
+                                    lg: 10,
+                                    xl: 3
+                                } 
+                            }}
+                        >
+                            <Breadcrumbs aria-label="page link tags">
+                                <LinkTag componentType={RouterLink} path="/">
+                                    <HomeIcon color="primary" sx={{ mr: 0.8}} fontSize="small" />
+                                    Home
+                                </LinkTag>
+
+                                <LinkTag componentType={RouterLink} path="/"> MARS-PHOTO </LinkTag>
+
+                                <LinkTag componentType={RouterLink} path="/apod">
+                                    <CollectionsIcon color="secondary" sx={{ mr: 0.8}} fontSize="small" /> 
+                                    APOD 
+                                </LinkTag>
+                            </Breadcrumbs>
+                        </Box>
+                    }
 
                     {/* hamburger menu */}
                     <Box sx={{

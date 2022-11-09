@@ -2,6 +2,7 @@ import axios from "axios";
 
 // for astronomy picture of the day
 // https://api.nasa.gov/planetary/apod?api_key=aLg1jdzAJCHquaktdj4RP4t2oGRswgtuJXjq15PQ
+// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=1995-06-16
 
 const fetchAPI = async (url, abortSignal) => {
     try {

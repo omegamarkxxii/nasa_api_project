@@ -1,7 +1,7 @@
-import { BaseNavBar, ApodBread  } from '../components';
+import { BaseNavBar } from '../components';
 import { Box } from "@mui/material";
 
-const SearchApod = ({handleOpenMenu}) => {
+const SearchApod = ({handleOpenMenu, matches}) => {
 
 
     return (
@@ -21,12 +21,18 @@ const SearchApod = ({handleOpenMenu}) => {
         >
 
             {/* base top nav */}
-            <BaseNavBar handleOpenMenu={handleOpenMenu}>
-                {<ApodBread/>}
-            </BaseNavBar>
+            <BaseNavBar handleOpenMenu={handleOpenMenu} matches={matches}> </BaseNavBar>
             
            
 
+            {/* content */}
+            {/* 
+                1. title for search
+                2. explanation or rules for the search
+                3. error handling
+                4. display search image card
+                5. option to save image?
+            */}
             <h1>some content</h1>
             <h1>some content</h1>
             <h1>some content</h1>

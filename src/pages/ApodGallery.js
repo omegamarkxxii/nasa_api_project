@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { BaseNavBar, ApodBread } from '../components';
 import { ImageModal } from '../components';
+import { BaseNavBar } from '../components';
 import { Grid, Box,ImageList , ImageListItem, ImageListItemBar, ListSubheader, IconButton  } from "@mui/material";
 import InfoIcon from '@mui/icons-material/Info';
 import { filterImageURL } from '../util';
 
-const APOD = ({apodList, handleOpenMenu}) => {
+const APOD = ({apodList, handleOpenMenu, matches}) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const [url, setUrl] = useState('');
@@ -36,17 +36,15 @@ const APOD = ({apodList, handleOpenMenu}) => {
         >
 
             {/* base top nav */}
-            <BaseNavBar handleOpenMenu={handleOpenMenu}>
-                {<ApodBread />}
-            </BaseNavBar>
+            <BaseNavBar handleOpenMenu={handleOpenMenu} matches={matches}></BaseNavBar>
 
 
             
             {/* gallery content */}
             <Box sx={{flexGrow: 1}}>
                 <Grid container direction="row">
-                    <Grid item xs={0} sm={0} md={2} lg={2} xl={2} ></Grid>
-                    <Grid item xs={12} sm={12} md={10} lg={10} xl={10}
+                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
+                    <Grid item xs={12} sm={12} md={12} lg={10} xl={10}
                         sx={{
                             border: "1px solid #e3e3e3",
                             paddingLeft: 1,
@@ -59,7 +57,7 @@ const APOD = ({apodList, handleOpenMenu}) => {
                                     sx={{textDecoration: 'underline'}} 
                                     component="div"
                                 >
-                                    Astronomy Picture Of The Day Gallery
+                                    Astronomy Picture Of The Day
                                 </ListSubheader>
                             </ImageListItem>
                             {<h1>loading....</h1> && filterImageURL([...apodList]).map((item, idx) => {
@@ -92,6 +90,7 @@ const APOD = ({apodList, handleOpenMenu}) => {
                             })}
                        </ImageList>
                     </Grid>
+                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
                 </Grid>
             </Box>
 

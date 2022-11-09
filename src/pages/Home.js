@@ -6,7 +6,7 @@ import { setURL } from '../util';
 const defaultTitle = 'Astronomy Picture Of The Day';
 const defaultDate = '';
 
-const Home = ({apod, handleOpenMenu}) => {
+const Home = ({apod, handleOpenMenu, matches}) => {
 
     return ( 
         <Container
@@ -25,12 +25,12 @@ const Home = ({apod, handleOpenMenu}) => {
         >
 
             {/* base top nav */}
-            <BaseNavBar handleOpenMenu={handleOpenMenu}></BaseNavBar>
+            <BaseNavBar handleOpenMenu={handleOpenMenu} matches={matches}></BaseNavBar>
 
              <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={0} sm={0} md={0} lg={2} xl={10} ></Grid>
-                    <Grid item xs={12} sm={12} md={12} lg={10} xl={2} >
+                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
+                    <Grid item xs={12} sm={12} md={12} lg={10} xl={10} >
                         <ImageCard
                             maxWidth={1536}
                             imgHeight={520} 
@@ -44,6 +44,7 @@ const Home = ({apod, handleOpenMenu}) => {
                             }
                         />
                     </Grid>
+                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
                 </Grid>
             </Box>
         </Container>
