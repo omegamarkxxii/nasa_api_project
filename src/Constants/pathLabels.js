@@ -10,6 +10,10 @@ const pathLabels = [
         path: '/apod'
     },
     {
+        id: 'mars',
+        path: '/mars'
+    },
+    {
         id: 'search',
         path: '/search'
     }

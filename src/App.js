@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import { Home, ApodGallery, SearchApod } from './pages';
+import { Home, ApodGallery, SearchApod, MARS } from './pages';
 import { NavLink } from './components';
 import fetchAPI from './Data/fetchAPI';
 import { initializeState, primaryStateReducer } from './Reducer/dataReducer';
@@ -13,7 +13,7 @@ const App = () => {
     const [state, dispatch] = useReducer(primaryStateReducer, initializeState);
     const [openMenu, setOpenMenu] = useState(false);
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.down('lg'));
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
 
     function handleOpenMenu() {
         setOpenMenu(prevState => !prevState);
@@ -77,6 +77,11 @@ const App = () => {
                     <Route path="/search" element={<SearchApod 
                             handleOpenMenu={handleOpenMenu} 
                             matches={matches}    
+                        />} 
+                    />
+                    <Route path="/mars" element={<MARS 
+                            handleOpenMenu={handleOpenMenu} 
+                            matches={matches} 
                         />} 
                     />
                 </Routes>

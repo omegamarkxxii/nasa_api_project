@@ -47,7 +47,7 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                                 mr: {
                                     xs: 3,
                                     sm: 3,
-                                    md: 3,
+                                    md: 5,
                                     lg: 10,
                                     xl: 3
                                 } 
@@ -55,11 +55,11 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                         >
                             <Breadcrumbs aria-label="page link tags">
                                 <LinkTag componentType={RouterLink} path="/">
-                                    <HomeIcon color="primary" sx={{ mr: 0.8}} fontSize="small" />
+                                    <HomeIcon color="success" sx={{ mr: 0.8}} fontSize="small" />
                                     Home
                                 </LinkTag>
 
-                                <LinkTag componentType={RouterLink} path="/"> MARS-PHOTO </LinkTag>
+                                <LinkTag componentType={RouterLink} path="/mars"> MARS-PHOTO </LinkTag>
 
                                 <LinkTag componentType={RouterLink} path="/apod">
                                     <CollectionsIcon color="secondary" sx={{ mr: 0.8}} fontSize="small" /> 
@@ -81,7 +81,7 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                             display: {
                                 xs: 'block',
                                 sm: 'block',
-                                md: 'block',
+                                md: 'none',
                                 lg: 'none',
                                 xl: 'none'
                             }, 
