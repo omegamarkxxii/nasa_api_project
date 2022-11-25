@@ -5,6 +5,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import CollectionsIcon from '@mui/icons-material/Collections';
+import SearchIcon from '@mui/icons-material/Search';
 
 const BaseNavBar = ({ handleOpenMenu,matches }) => {
     return ( 
@@ -16,6 +17,7 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                     backgroundColor: 'grey.50', 
                     boxShadow: 'none', 
                     borderBottom: '1px solid #e3e3e3',
+                    // height: 60
                 }}
                 
             >
@@ -59,11 +61,16 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                                     Home
                                 </LinkTag>
 
-                                <LinkTag componentType={RouterLink} path="/mars"> MARS-PHOTO </LinkTag>
+                                <LinkTag componentType={RouterLink} path="/rovers"> Rovers </LinkTag>
 
                                 <LinkTag componentType={RouterLink} path="/apod">
                                     <CollectionsIcon color="secondary" sx={{ mr: 0.8}} fontSize="small" /> 
                                     APOD 
+                                </LinkTag>
+
+                                <LinkTag componentType={RouterLink} path={'/search'}>
+                                    <SearchIcon color="primary" sx={{ mr: 0.8 }} fontSize="small" />
+                                    Search
                                 </LinkTag>
                             </Breadcrumbs>
                         </Box>

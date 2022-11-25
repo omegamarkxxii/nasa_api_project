@@ -1,6 +1,10 @@
 import { Box , Stack, Typography, Button, Divider} from '@mui/material'
 
-const SideBar = ({sideBarHeading, buttons}) => {
+const SideBar = ({setID, sideBarHeading, buttons}) => {
+    const handleClick = (id) => {
+      setID(id);
+    }
+
     return ( 
         <Box sx={{ 
             width:'80%', 
@@ -24,11 +28,8 @@ const SideBar = ({sideBarHeading, buttons}) => {
                 {sideBarHeading}
                 <Divider />
               </Typography>
-              {/* <Button variant="outlined" size="small">Curiosity</Button>
-              <Button variant="outlined" size="small">Opportunity</Button>
-              <Button variant="outlined" size="small">Spirit</Button> */}
               {buttons.map((btn, idx) => {
-                return <Button key={idx} variant="outlined" size="small">{btn}</Button>
+                return <Button key={idx} onClick={() => handleClick(btn.id)} variant="outlined" size="small">{btn.name}</Button>
               })}
             </Stack>
         </Box>

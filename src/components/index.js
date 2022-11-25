@@ -4,3 +4,6 @@ export {default as ImageModal} from './ImageModal';
 export {default as BaseNavBar} from './BaseNavbar';
 export {default as SideBar} from './SideBar';
 export {default as CollapseList} from './CollapseList';
+export {default as DetailTable} from './DetailTable';
+export {default as PaperText} from './PaperText';
+export {default as Form} from './Form';

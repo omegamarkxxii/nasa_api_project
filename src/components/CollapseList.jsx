@@ -4,10 +4,14 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-const CollapseList = ({collapseListHeading, listButtons }) => {
+const CollapseList = ({setID, collapseListHeading, listButtons }) => {
     const [open, setOpen] = useState(false);
     const handleClick = () => {
         setOpen(!open);
+    };
+
+    const handleBtnClick = (id) => {
+        setID(id);
     };
 
     return ( 
@@ -38,57 +42,9 @@ const CollapseList = ({collapseListHeading, listButtons }) => {
 
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    {/* <ListItemButton divider  sx={{ pl: 4 }}>
-                        <ListItemIcon>
-                            <ArrowRightIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                        disableTypography 
-                        primary={
-                            <Typography variant='button' align="right" 
-                                sx={{color: 'primary.main', fontSize: 13}}
-                            >
-                            Curiosity
-                            </Typography>
-                        }
-                        />
-                    </ListItemButton>
-
-                    <ListItemButton divider sx={{ pl: 4 }}>
-                        <ListItemIcon>
-                            <ArrowRightIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                            disableTypography 
-                            primary={
-                                <Typography variant='button' align="right" 
-                                    sx={{color: 'primary.main', fontSize: 13}}
-                                >
-                                Opportunity
-                                </Typography>
-                            }
-                        />
-                    </ListItemButton>
-
-                    <ListItemButton divider sx={{ pl: 4 }}>
-                        <ListItemIcon>
-                            <ArrowRightIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                            disableTypography 
-                            primary={
-                                <Typography variant='button' align="right" 
-                                    sx={{color: 'primary.main', fontSize: 13}}
-                                >
-                                Spirit
-                                </Typography>
-                            }
-                        />
-                    </ListItemButton> */}
-
                     {listButtons.map((btn ,idx) => {
                         return (  
-                            <ListItemButton key={idx} divider sx={{ pl: 4 }}>
+                            <ListItemButton key={idx} onClick={() => handleBtnClick(btn.id)} divider sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <ArrowRightIcon />
                                 </ListItemIcon>
@@ -98,7 +54,7 @@ const CollapseList = ({collapseListHeading, listButtons }) => {
                                         <Typography variant='button' align="right" 
                                             sx={{color: 'primary.main', fontSize: 13}}
                                         >
-                                        {btn}
+                                        {btn.name}
                                         </Typography>
                                     }
                                 />

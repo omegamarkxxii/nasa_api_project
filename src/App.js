@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import { Home, ApodGallery, SearchApod, MARS } from './pages';
+import { Home, ApodGallery, MARS, Search } from './pages';
 import { NavLink } from './components';
 import fetchAPI from './Data/fetchAPI';
 import { initializeState, primaryStateReducer } from './Reducer/dataReducer';
@@ -8,6 +8,9 @@ import { Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+
+// for rover detail --> spirit, Curiosity, Opportunity
+// https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/?api_key=DEMO_KEY 
 
 const App = () => {
     const [state, dispatch] = useReducer(primaryStateReducer, initializeState);
@@ -74,12 +77,12 @@ const App = () => {
                             matches={matches}  
                         />} 
                     />
-                    <Route path="/search" element={<SearchApod 
+                    <Route path="/search" element={<Search 
                             handleOpenMenu={handleOpenMenu} 
-                            matches={matches}    
-                        />} 
+                            matches={matches} 
+                        />}
                     />
-                    <Route path="/mars" element={<MARS 
+                    <Route path="/rovers" element={<MARS 
                             handleOpenMenu={handleOpenMenu} 
                             matches={matches} 
                         />} 
