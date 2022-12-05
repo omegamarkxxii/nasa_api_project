@@ -7,3 +7,7 @@ export {default as CollapseList} from './CollapseList';
 export {default as DetailTable} from './DetailTable';
 export {default as PaperText} from './PaperText';
 export {default as Form} from './Form';
+export {default as DesktopDrawer} from './DesktopDrawer';
+export {default as MobileDrawer} from './MobileDrawer';
+export {default as ImageGallery} from './ImageGallery';
+export {default as InputField} from './InputField';

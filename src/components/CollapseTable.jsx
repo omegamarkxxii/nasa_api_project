@@ -3,8 +3,25 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const CollapseTable = () => {
     return ( 
-        <div style={{marginTop: 3}}>
-            <Accordion>
+        <Box 
+            sx={{
+                mt: 0.5,
+                width: "100%",
+                display: "flex",
+                justifyContent: "center"
+            }}
+        >
+            <Accordion 
+                sx={{
+                    width: {
+                        xs: "97%",
+                        sm: "80%",
+                        md: "90%",
+                        lg: "100%",
+                        xl: "100%"
+                    }
+                }}
+            >
                 <AccordionSummary
                     expandIcon={ <ExpandMoreIcon /> }
                     aria-controls="panel1a-content"
@@ -12,6 +29,7 @@ const CollapseTable = () => {
                 >
                     <Typography> Rules </Typography>
                 </AccordionSummary>
+                <Divider />
                 <AccordionDetails>
                     <Stack sx={{backgroundColor: 'white', p: 2}}>
                         <Box>
@@ -67,14 +85,14 @@ const CollapseTable = () => {
 
                         <Box>
                             <Typography variant="subtitle2" sx={{color: "grey.700"}}>NASA_OPEN_API</Typography>
-                            <Typography component={"div"} variant="caption" sx={{fontSize: 12, ml: 2}}>
-                                <a target="_blank" style={{fontWeight: "bold"}} href="https://api.nasa.gov">www.api.nasa.gov</a>
+                            <Typography component={"div"} variant="caption" sx={{color: "grey.600", fontSize: 12, ml: 2}}>
+                                all resource comes from <span style={{color: "gray", fontWeight: "bold"}}>api.nasa.gov</span>
                             </Typography>
                         </Box>
                     </Stack>
                 </AccordionDetails>
             </Accordion>
-        </div>
+        </Box>
     );
 }
  

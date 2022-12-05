@@ -36,7 +36,7 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                                 color: 'primary.main'
                             }}
                         >
-                            <RocketLaunchIcon />
+                            <RocketLaunchIcon fontSize="medium" />
                         </IconButton>
                     </Box>
 
@@ -56,16 +56,26 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                             }}
                         >
                             <Breadcrumbs aria-label="page link tags">
-                                <LinkTag componentType={RouterLink} path="/">
-                                    <HomeIcon color="success" sx={{ mr: 0.8}} fontSize="small" />
-                                    Home
-                                </LinkTag>
+                                <IconButton component={RouterLink} to={'/'} edge="start" aria-label="home" 
+                                    sx={{ 
+                                        ml: {
+                                            xs: 3,
+                                            sm: 3,
+                                            md: 9,
+                                            lg: 9,
+                                            xl: 9
+                                        },
+                                        color: 'primary.main'
+                                    }}
+                                >
+                                    <HomeIcon color="success"  fontSize="small" />
+                                </IconButton>
 
                                 <LinkTag componentType={RouterLink} path="/rovers"> Rovers </LinkTag>
 
                                 <LinkTag componentType={RouterLink} path="/apod">
                                     <CollectionsIcon color="secondary" sx={{ mr: 0.8}} fontSize="small" /> 
-                                    APOD 
+                                    Gallery 
                                 </LinkTag>
 
                                 <LinkTag componentType={RouterLink} path={'/search'}>

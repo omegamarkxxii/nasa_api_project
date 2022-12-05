@@ -4,6 +4,7 @@ import { Home, ApodGallery, MARS, Search } from './pages';
 import { NavLink } from './components';
 import fetchAPI from './Data/fetchAPI';
 import { initializeState, primaryStateReducer } from './Reducer/dataReducer';
+import { initialSearchQueryState, searchQueryReducer } from './Reducer/searchQueryReducer';
 import { Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -11,15 +12,25 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 // for rover detail --> spirit, Curiosity, Opportunity
 // https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/?api_key=DEMO_KEY 
+// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=1995-06-16
+// https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY
+// https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=2004-01-05&page=2&api_key=DEMO_KEY
 
 const App = () => {
     const [state, dispatch] = useReducer(primaryStateReducer, initializeState);
+    const [searchState, searchDispatch] = useReducer(searchQueryReducer, initialSearchQueryState);
     const [openMenu, setOpenMenu] = useState(false);
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
 
     function handleOpenMenu() {
         setOpenMenu(prevState => !prevState);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('form submited!!!1');
+        searchDispatch({type: 'VALIDATE'});
     }
 
     useEffect(() => {
@@ -43,11 +54,14 @@ const App = () => {
     //     }
     // }, []);
 
+    useEffect(() => {
+        console.log(searchState)
+    }, [searchState]);
 
     useEffect(() => {
-        console.log('-------------------');
-        console.log('state changed!!');
-        console.log(state);
+        // console.log('-------------------');
+        // console.log('state changed!!');
+        // console.log(state);
         dispatch({type: 'UPDATE_LOCAL_STORAGE'});
     }, [state]);
 
@@ -72,14 +86,19 @@ const App = () => {
                         />} 
                     />
                     <Route path="/apod" element={<ApodGallery 
-                            apodList={state.astronomyPicOfTheDay}
+                            // apodList={state.astronomyPicOfTheDay}
+                            apodList={[]}
                             handleOpenMenu={handleOpenMenu} 
                             matches={matches}  
                         />} 
                     />
                     <Route path="/search" element={<Search 
+                            apodList={[]}
                             handleOpenMenu={handleOpenMenu} 
                             matches={matches} 
+                            searchState={searchState}
+                            searchDispatch={searchDispatch}
+                            handleSubmit={handleSubmit}
                         />}
                     />
                     <Route path="/rovers" element={<MARS 
