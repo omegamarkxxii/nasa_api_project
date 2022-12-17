@@ -5,7 +5,7 @@ import { Grid, Box,ImageList , ImageListItem, ImageListItemBar, ListSubheader, I
 import InfoIcon from '@mui/icons-material/Info';
 import { filterImageURL } from '../util';
 
-const APOD = ({apodList, handleOpenMenu, matches}) => {
+const APOD = ({ apodList }) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const [url, setUrl] = useState('');
@@ -15,7 +15,6 @@ const APOD = ({apodList, handleOpenMenu, matches}) => {
         setOpen(prevState => {
             setUrl(item.url);
             setTitle(item.title);
-
             return !prevState;
         });
     }
@@ -36,9 +35,7 @@ const APOD = ({apodList, handleOpenMenu, matches}) => {
         >
 
             {/* base top nav */}
-            <BaseNavBar handleOpenMenu={handleOpenMenu} matches={matches}></BaseNavBar>
-
-
+            <BaseNavBar />
             
             {/* gallery content */}
             <Box sx={{flexGrow: 1}}>

@@ -7,7 +7,7 @@ const ImageGallery = ({items, handleOpen}) => {
         <ImageList sx={{ width: '100%' }}>
             {filterImageURL([...items]).map((item, idx) => {
                 return (
-                    <ImageListItem key={item.date + idx}>
+                    <ImageListItem key={idx}>
                         <img 
                             src={`${item.url}?w=248&fit=crop&auto=format`}
                             srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}

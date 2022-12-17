@@ -1,13 +1,15 @@
 import {Link as RouterLink} from 'react-router-dom';
-import { Breadcrumbs, AppBar,Box,Toolbar,IconButton } from '@mui/material';
-import LinkTag from './LinkTag';
+import { AppBar,Box,Toolbar,IconButton } from '@mui/material';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import CollectionsIcon from '@mui/icons-material/Collections';
-import SearchIcon from '@mui/icons-material/Search';
+import BreadCrumbDesktop from './BreadCrumbDesktop';
+import BreadCrumbMobile from './BreadCrumbMobile';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-const BaseNavBar = ({ handleOpenMenu,matches }) => {
+const BaseNavBar = () => {
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
+
     return ( 
         <Box sx={{ flexGrow: 1 }}>
             <AppBar 
@@ -16,8 +18,7 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                     color: 'primary.main', 
                     backgroundColor: 'grey.50', 
                     boxShadow: 'none', 
-                    borderBottom: '1px solid #e3e3e3',
-                    // height: 60
+                    borderBottom: '1px solid #e3e3e3'
                 }}
                 
             >
@@ -29,9 +30,9 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                                 ml: {
                                     xs: 3,
                                     sm: 3,
-                                    md: 9,
-                                    lg: 9,
-                                    xl: 9
+                                    md: 3,
+                                    lg: 7,
+                                    xl: 7
                                 },
                                 color: 'primary.main'
                             }}
@@ -40,80 +41,10 @@ const BaseNavBar = ({ handleOpenMenu,matches }) => {
                         </IconButton>
                     </Box>
 
-                    {/* extra components based on page */}
+
                     {/* home / mars-phote / apod --> link tags */}
-                    {!matches && 
-                        <Box
-                            role="presentation"
-                            sx={{
-                                mr: {
-                                    xs: 3,
-                                    sm: 3,
-                                    md: 5,
-                                    lg: 10,
-                                    xl: 3
-                                } 
-                            }}
-                        >
-                            <Breadcrumbs aria-label="page link tags">
-                                <IconButton component={RouterLink} to={'/'} edge="start" aria-label="home" 
-                                    sx={{ 
-                                        ml: {
-                                            xs: 3,
-                                            sm: 3,
-                                            md: 9,
-                                            lg: 9,
-                                            xl: 9
-                                        },
-                                        color: 'primary.main'
-                                    }}
-                                >
-                                    <HomeIcon color="success"  fontSize="small" />
-                                </IconButton>
+                    {!matches === true ? <BreadCrumbDesktop/> : <BreadCrumbMobile />}
 
-                                <LinkTag componentType={RouterLink} path="/rovers"> Rovers </LinkTag>
-
-                                <LinkTag componentType={RouterLink} path="/apod">
-                                    <CollectionsIcon color="secondary" sx={{ mr: 0.8}} fontSize="small" /> 
-                                    Gallery 
-                                </LinkTag>
-
-                                <LinkTag componentType={RouterLink} path={'/search'}>
-                                    <SearchIcon color="primary" sx={{ mr: 0.8 }} fontSize="small" />
-                                    Search
-                                </LinkTag>
-                            </Breadcrumbs>
-                        </Box>
-                    }
-
-                    {/* hamburger menu */}
-                    <Box sx={{
-                            mr: {
-                                xs: 3,
-                                sm: 3,
-                                md: 10,
-                                lg: 10,
-                                xl: 10
-                            }, 
-                            display: {
-                                xs: 'block',
-                                sm: 'block',
-                                md: 'none',
-                                lg: 'none',
-                                xl: 'none'
-                            }, 
-                        }}
-                    >
-                        <IconButton 
-                            edge="start" 
-                            aria-label="menu" 
-                            sx={{ color: 'grey.800' }}
-                            onClick={ handleOpenMenu }
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                    </Box>
-                    
                 </Toolbar>
             </AppBar>
         </Box>

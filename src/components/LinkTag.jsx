@@ -9,14 +9,8 @@ const LinkTag = ({componentType, path, children}) => {
             sx={{ 
                 display: 'flex', 
                 alignItems: 'center', 
-                color: 'grey.800',
-                fontSize: {
-                    xs: 11,
-                    sm: 11,
-                    md: 12,
-                    lg: 13,
-                    xl: 13
-                } 
+                color: 'grey.700',
+                fontSize: 12
             }}
             variant="button"
         >

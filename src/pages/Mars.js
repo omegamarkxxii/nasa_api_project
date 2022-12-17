@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { Spirit, Curiosity, Opportunity } from '../Constants/rover';
 import { ImageCard, BaseNavBar, SideBar, CollapseList, DetailTable, PaperText } from "../components";
 import { Box, Grid, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
-const MARS = ({handleOpenMenu, matches}) => {
+const MARS = () => {
   const [id, setID] = useState(2);
   const [rover, setRover] = useState({...Spirit});
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     const rovers = [Curiosity, Opportunity, Spirit];
@@ -27,7 +31,7 @@ const MARS = ({handleOpenMenu, matches}) => {
         >
 
             {/* base top nav */}
-            <BaseNavBar handleOpenMenu={handleOpenMenu} matches={matches} ></BaseNavBar>
+            <BaseNavBar />
 
             {/* main content */}
             <Box sx={{flexGrow: 1}}>

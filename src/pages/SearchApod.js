@@ -1,7 +1,7 @@
 import { BaseNavBar } from '../components';
 import { Box } from "@mui/material";
 
-const SearchApod = ({handleOpenMenu, matches}) => {
+const SearchApod = ({handleOpenMenu}) => {
 
 
     return (
@@ -21,7 +21,7 @@ const SearchApod = ({handleOpenMenu, matches}) => {
         >
 
             {/* base top nav */}
-            <BaseNavBar handleOpenMenu={handleOpenMenu} matches={matches}> </BaseNavBar>
+            <BaseNavBar handleOpenMenu={handleOpenMenu}> </BaseNavBar>
             
            
 

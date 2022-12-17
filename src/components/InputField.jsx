@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Box, TextField } from "@mui/material";
 
-const InputField = ({searchDispatch}) => {
+const InputField = () => {
+    const [target, setTarget] = useState('');
     const handleChange = (e) => {
-        searchDispatch({type: 'SET_VALUE', payload: e.target.value});
+        setTarget(e.target.value);
     }
+  
 
     return ( 
         <Box
@@ -19,6 +22,7 @@ const InputField = ({searchDispatch}) => {
                     id="outlined-basic" 
                     label="enter date or sol" 
                     variant="outlined"
+                    value={target}
                     helperText="example: 2021-12-31 or digit representing martian year from 1 to max sol"
                     onChange={handleChange}
             ></TextField>

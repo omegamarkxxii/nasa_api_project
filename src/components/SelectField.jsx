@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { TextField, Box, MenuItem } from '@mui/material';
 
-const SelectField = ({searchState, searchDispatch}) => {
+const SelectField = () => {
+    const [target, setTarget] = useState('apod');
     const handleChange = (e) => {
-        searchDispatch({type: 'SET_TARGET', payload: e.target.value});
+        setTarget(e.target.value);
     }
 
     return ( 
@@ -20,7 +22,7 @@ const SelectField = ({searchState, searchDispatch}) => {
                     id="select-search-target-for-nasa-api"
                     select
                     label="Choose Target"
-                    value={searchState.target}
+                    value={target}
                     onChange={handleChange}
                 >
                     <MenuItem value="apod"> astronomy picture of the day </MenuItem>
