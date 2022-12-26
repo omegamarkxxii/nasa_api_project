@@ -1,21 +1,29 @@
+import { useContext } from 'react';
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import FormSetValueContext from '../context/FormContext/FormSetValueContext';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-const CustomSelect = ({select, value, setValue}) => {
+const CustomSelect = ({select, value, name}) => {
+    const setFormValue = useContext(FormSetValueContext);
+
+    const handleChange = (e) => {
+        setFormValue(e.target.name, e.target.value);
+    }
 
     return ( 
         <Box sx={{ minWidth: select.width || 120, p: 0.5}}>
             <FormControl fullWidth >
                 <InputLabel id={select.inputLabel}>{select.title}</InputLabel>
                 <Select
+                    name={name}
                     variant='outlined'
                     labelId={select.labelID}
                     id={select.id}
                     value={value}
                     label={select.label}
-                    onChange={setValue}
+                    onChange={handleChange}
                     MenuProps={{
                         PaperProps: {
                             style: {

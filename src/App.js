@@ -1,46 +1,36 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import { Home, ApodGallery, MARS, Search } from './pages';
-import { initializeState, primaryStateReducer } from './Reducer/dataReducer';
+import { Home, Gallery, MARS, Search } from './pages';
+import { reducer } from './Reducer/reducer';
 import { Container } from '@mui/material';
-import handleFetch from './Data/handleFetch';
-// import SearchResultContext from './context/SearchResultContext';
-// import { createLocalStorage, getLocalStorage, updateLocalStorage } from './util';
+import getData from './services/api';
+import initialLocalState from './Constants/initialLocalState';
+import useForm from './hooks/useForm';
+import useLocalStorage from './hooks/useLocalStorage';
+import FormContextProvider from './context/FormContext/FormContextProvider';
 
-
-// for rover detail --> spirit, Curiosity, Opportunity
-// https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/?api_key=DEMO_KEY 
-// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=1995-06-16
-// https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY
-// https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=2004-01-05&page=2&api_key=DEMO_KEY
-
-// const LOCAL_STORAGE_NAME = 'nasa-data';
 
 const App = () => {
-    const [state, dispatch] = useReducer(primaryStateReducer, initializeState);
-    // const [local, setLocal] = useState([]);
-
-    useEffect(() => {
-        dispatch({type: 'INIT_LOCAL_STORAGE'});
-        // createLocalStorage(LOCAL_STORAGE_NAME);
-    }, []);
+    const [local, setLocal]= useLocalStorage('nasa-api', initialLocalState);
+    const [state, dispatch] = useReducer(reducer, {...local});
+    const {formState, setFormValue, handleFormSubmit} = useForm();
+    const [astronomyPicOfTheDay, setAstronomyPicOfTheDay] = useState('');
 
     // useEffect(() => {
-    //     if([].length > 0) return;
-    //     updateLocalStorage(LOCAL_STORAGE_NAME, local);
-    // }, [local]);
-
+        
+    // }, []);
 
     // useEffect(() => {
     //     const controller = new AbortController();
     //     const signal = controller.signal;
 
-    //     handleFetch({url: 'planetary/apod', abortSignal: signal})
-    //         .then(res => {
-    //             dispatch({type: 'UPDATE_ASTRONOMY_PICTURE_OF_THE_DAY', payload: res});
+    //     getData('planetary/apod', {method: 'get', signal: signal})
+    //         .then(res => res.data)
+    //         .then(data => {
+    //             setAstronomyPicOfTheDay(data);
     //         })
     //         .catch(err => {
-    //             console.log('err : ', err);
+    //             console.log(err);
     //         })
 
     //     return () => {
@@ -50,9 +40,11 @@ const App = () => {
 
 
     useEffect(() => {
-        // console.log(state);
-        dispatch({type: 'UPDATE_LOCAL_STORAGE'});
-    }, [state]);
+        console.log('state', state);
+        console.log('local stored');
+        console.count();
+        setLocal(state);
+    }, [state, setLocal]);
 
 
     return ( 
@@ -66,20 +58,23 @@ const App = () => {
             >
 
                 <Routes>
-                    <Route path="/" exact element={
-                        <Home apod={ state.astronomyPicOfTheDay[state.astronomyPicOfTheDay.length - 1] } /> } 
-                    />
-                    <Route path="/apod" element={<ApodGallery 
-                            // apodList={state.astronomyPicOfTheDay}
-                            apodList={[]}
+                    <Route path="/" exact element={ <Home apod={ astronomyPicOfTheDay } /> } />
+                    <Route path="/apod" element={<Gallery 
+                            list={state.astronomypicoftheday}
+                            // list={[]}
+                            dispatch={dispatch}
                         />} 
                     />
-                    <Route path="/rovers" element={<MARS  />} />
-                    <Route path="/search" element={
-                        // <SearchResultContext.Provider value={}>
-                            <Search />
-                        // </SearchResultContext.Provider>
-                    }/>
+                    <Route path="/rovers" element={ <MARS  />} />
+                    <Route path="/search" element={ 
+                        <FormContextProvider 
+                            formState={formState} 
+                            setFormValue={setFormValue} 
+                            handleFormSubmit={handleFormSubmit}
+                        >
+                            <Search dispatch={dispatch} /> 
+                        </FormContextProvider>
+                    } />
                 </Routes>
 
             </Container >

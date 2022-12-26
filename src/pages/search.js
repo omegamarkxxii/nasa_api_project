@@ -1,13 +1,11 @@
-// import { useState, useEffect, useContext } from "react";
 import { BaseNavBar, DesktopDrawer } from "../components";
 
-const Search = () => {
-
+const Search = ({dispatch}) => {
 
   return ( 
       <>
           <BaseNavBar />
-          <DesktopDrawer  />
+          <DesktopDrawer dispatch={dispatch} />
       </>
   );
 }

@@ -24,3 +24,9 @@ const handleFetch = async ({url, abortSignal, paramEntries = {}}) => {
 }
 
 export default handleFetch;
+
+// for rover detail --> spirit, Curiosity, Opportunity
+// https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/?api_key=DEMO_KEY 
+// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=1995-06-16
+// https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY
+// https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=2004-01-05&page=2&api_key=DEMO_KEY

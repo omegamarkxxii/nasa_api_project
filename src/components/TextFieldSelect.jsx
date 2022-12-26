@@ -1,14 +1,17 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import FormSetValueContext from "../context/FormContext/FormSetValueContext";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-const TextFieldSelect = ({list, handleYear, width}) => {
+const TextFieldSelect = ({list, width, name}) => {
+    const setFormValue = useContext(FormSetValueContext);
     const [value, setValue] = useState(list[0]);
     const handleChange = (e) => {
         setValue(() => {
-            handleYear(e.target.value);
+            setFormValue(e.target.name, e.target.value);
             return e.target.value;
         });
     }
@@ -18,6 +21,7 @@ const TextFieldSelect = ({list, handleYear, width}) => {
             <FormControl fullWidth >
                 <InputLabel id={'year-select-label'}>year</InputLabel>
                 <Select
+                    name={name}
                     variant='outlined'
                     labelId="year-select-label"
                     id="year-select"

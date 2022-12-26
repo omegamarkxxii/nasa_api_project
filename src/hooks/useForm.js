@@ -1,0 +1,70 @@
+import { useState, useEffect } from 'react';
+import searchLabel from '../Constants/searchLabel';
+import { checkDayForFeb, createDateStr } from '../util';
+import createURL from '../services/createURL';
+import getData from '../services/api';
+import filterSearchResult from '../services/filterSearchResult';
+import { regexMatchMarsURl } from '../util';
+
+const label = searchLabel();
+const initialFormState = {
+    id: 'astronomypicoftheday',
+    year: '1996',
+    month: 1,
+    day: 1,
+    url_path: '',
+    search_result: []
+};
+
+const useForm = () => {
+    const [formState, setFormState] = useState(initialFormState);
+
+    const setFormValue = (name, value) => {
+        setFormState(prevState => {
+            return {...prevState, [name]: value};
+        })
+    };
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        setFormState(prevState => {
+            return {...prevState, search_result: []};
+        })
+        const day = checkDayForFeb(formState.month, formState.day);
+        const date = createDateStr(formState.year, formState.month, day);
+        const url = createURL(formState.id, date);
+        setFormState(prevState => {
+            return {...prevState, url_path: url};
+        })
+    };
+
+    useEffect(() => {
+        if(!formState.url_path) return;
+        console.log(formState.url_path);
+        const targetID = regexMatchMarsURl(formState.url_path) ? "mars" : "apod";
+        const controller = new AbortController();
+        const signal = controller.signal;
+        getData(formState.url_path, {signal: signal})
+            .then(res => res.data)
+            .then(data => {
+                const filteredData = filterSearchResult(targetID, data);
+                setFormState(prevState => {
+                    return {...prevState, search_result: filteredData};
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }, [formState.url_path]);
+    
+    useEffect(() => {
+        setFormState(prevState => {
+            return {...prevState, year: label[formState.id].years[0]};
+        })
+    }, [formState.id]);
+
+    return {formState, setFormValue, handleFormSubmit};
+}
+ 
+export default useForm;

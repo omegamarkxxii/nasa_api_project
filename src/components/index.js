@@ -10,3 +10,4 @@ export {default as ImageGallery} from './ImageGallery';
 export {default as InputField} from './InputField';
 export {default as DesktopDrawer} from './DesktopDrawer';
 export {default as CustomSelect} from './CustomSelect';
+export {default as DeleteFavoriteIcon} from './DeleteFavoriteIcon';

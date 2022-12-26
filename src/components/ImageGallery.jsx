@@ -1,10 +1,11 @@
-import { ImageList, ImageListItem} from "@mui/material";
-// import nasaImg from '../images/nasa_1.jpg';
+import { ImageList, ImageListItem, ImageListItemBar, Typography } from "@mui/material";
 import { filterImageURL } from "../util";
+import FavoriteIconBtn from './FavoriteIconBtn';
 
-const ImageGallery = ({items, handleOpen}) => {
+const ImageGallery = ({items, handleOpen, dispatch}) => {
+
     return ( 
-        <ImageList sx={{ width: '100%' }}>
+        <ImageList sx={{ width: '100%' }} gap={6}>
             {filterImageURL([...items]).map((item, idx) => {
                 return (
                     <ImageListItem key={idx}>
@@ -17,6 +18,20 @@ const ImageGallery = ({items, handleOpen}) => {
                             style={{
                                 cursor: 'pointer'
                             }}
+                        />
+                         <ImageListItemBar
+                            title={
+                                <Typography variant="h6" sx={{fontSize: 14}} color="grey.800">
+                                    {item.name}
+                                </Typography>
+                            }
+                            subtitle={
+                                <Typography variant="caption" component="span" sx={{ fontStyle: 'italic'}} color="text.secondary" >
+                                    {item.title}
+                                </Typography>
+                            }
+                            position="below"
+                            actionIcon={ <FavoriteIconBtn item={item} dispatch={dispatch} /> }
                         />
                     </ImageListItem>
                 )

@@ -14,6 +14,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-
-// https://api.nasa.gov/planetary/apod?api_key=aLg1jdzAJCHquaktdj4RP4t2oGRswgtuJXjq15PQ
