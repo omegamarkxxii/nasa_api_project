@@ -16,9 +16,6 @@ const App = () => {
     const {formState, setFormValue, handleFormSubmit} = useForm();
     const [astronomyPicOfTheDay, setAstronomyPicOfTheDay] = useState('');
 
-    // useEffect(() => {
-        
-    // }, []);
 
     // useEffect(() => {
     //     const controller = new AbortController();
@@ -49,18 +46,14 @@ const App = () => {
 
     return ( 
         <BrowserRouter>
-            <Container 
-                maxWidth="lg"
-                disableGutters
-                sx={{
-                    backgroundColor: "grey.50"
-                }}
-            >
-
+            <Container maxWidth="lg"  sx={{backgroundColor: "grey.50" }} >
                 <Routes>
                     <Route path="/" exact element={ <Home apod={ astronomyPicOfTheDay } /> } />
                     <Route path="/apod" element={<Gallery 
-                            list={state.astronomypicoftheday}
+                            list={[
+                                ...state.astronomypicoftheday,
+                                ...state.curiosity
+                            ]}
                             // list={[]}
                             dispatch={dispatch}
                         />} 
@@ -76,7 +69,6 @@ const App = () => {
                         </FormContextProvider>
                     } />
                 </Routes>
-
             </Container >
         </BrowserRouter>
     );
