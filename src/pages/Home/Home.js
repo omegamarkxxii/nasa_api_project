@@ -1,41 +1,37 @@
-import { Container, Box, Grid } from '@mui/material';
-import { ImageCard, BaseNavBar } from '../../components';
+import { Box } from '@mui/material';
+import { ImageCard, BaseContainer, DesktopNavBar, MobileNavBar } from '../../components';
 import { setURL } from '../../util';
 import nasaimg from '../../images/nasa_1.jpg';
 import style from './style';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const defaultTitle = 'Astronomy Picture Of The Day';
-const defaultDate = '';
+const defaultDetail = '';
+const imgmaxWidth = 1536;
+const imgHeight = 520;
 
 const Home = ({apod}) => {
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
 
     return ( 
-        <Container maxWidth="lg" disableGutters sx={style.root} >
-
-            {/* base top nav */}
-            <BaseNavBar />
-
-             <Box sx={style.box}>
-                <Grid container spacing={2}>
-                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
-                    <Grid item xs={12} sm={12} md={12} lg={10} xl={10} >
-                        <ImageCard
-                            maxWidth={1536}
-                            imgHeight={520} 
-                            imgUrl={setURL(apod, 'image', nasaimg)}
-                            content={
-                                {
-                                    display: true,
-                                    title: apod?.title ?? defaultTitle,
-                                    detail: apod?.date ?? defaultDate
-                                }
-                            }
-                        />
-                    </Grid>
-                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
-                </Grid>
+        <BaseContainer>
+            {matches ? <MobileNavBar /> : <DesktopNavBar />}
+        
+            <Box component="main" sx={style.imgWrapper} >
+                <ImageCard
+                    maxWidth={imgmaxWidth}
+                    imgHeight={imgHeight}
+                    imgUrl={setURL(apod, 'image', nasaimg)}
+                    content={{
+                        display: true,
+                        title: apod?.title ?? defaultTitle,
+                        detail: apod?.date ?? defaultDetail
+                    }}
+                />
             </Box>
-        </Container>
+        </BaseContainer>
     );
 }
  

@@ -11,13 +11,13 @@ const BreadCrumbMobile = () => {
         <Box role="presentation" >
             <Breadcrumbs aria-label="page link tags">
                 <IconButton component={RouterLink} to={'/'} edge="start" aria-label="home"  sx={style.home}>
-                        <HomeIcon color="success"  fontSize="small" />
+                        <HomeIcon color="primary"  fontSize="small" />
                 </IconButton>
 
                 <LinkTag componentType={RouterLink} path="/rovers" > Rovers </LinkTag>
 
                 <IconButton component={RouterLink} to={'/apod'} edge="start" aria-label="gallery" sx={style.collection}>
-                        <CollectionsIcon color="secondary"  fontSize="small" />
+                        <CollectionsIcon color="primary"  fontSize="small" />
                 </IconButton>
 
 

@@ -1,6 +1,7 @@
 import { ImageList, ImageListItem, ImageListItemBar, Typography } from "@mui/material";
 import { filterImageURL } from "../../util";
 import FavoriteIconBtn from '../FavoriteIconBtn/FavoriteIconBtn';
+import { trimStr } from "../../util";
 import style from './style';
 
 const ImageGallery = ({items, handleOpen, dispatch}) => {
@@ -21,12 +22,20 @@ const ImageGallery = ({items, handleOpen, dispatch}) => {
                          <ImageListItemBar
                             title={
                                 <Typography variant="h6" sx={style.imgTit} color="grey.800">
-                                    {item.name}
+                                    { item.name === "astronomypicoftheday" ?
+                                        trimStr(item.title, 19)
+                                        :
+                                        item.name 
+                                    }
                                 </Typography>
                             }
                             subtitle={
                                 <Typography variant="caption" component="span" sx={style.imgSub} color="text.secondary" >
-                                    {item.title}
+                                    { item.name === "astronomypicoftheday" ?
+                                        item.date
+                                        :
+                                        trimStr(item.title, 19)
+                                    }
                                 </Typography>
                             }
                             position="below"

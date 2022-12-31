@@ -21,3 +21,4 @@ export const regexMatchMarsURl = (str) => /mars/gm.test(str);
 export const createList = (str) => str.split(/,/g);
 export const  checkDayForFeb = (month, day) => (Number.parseInt(month) === 2 && Number.parseInt(day) > 28)? 28 : day;
 export const createDateStr = (year, month, day) => `${year}-${month}-${day}`; 
+export const trimStr = (str, val) => str.slice(0, val); 

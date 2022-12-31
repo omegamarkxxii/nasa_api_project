@@ -9,3 +9,8 @@ export {default as ImageGallery} from './ImageGallery/ImageGallery';
 export {default as DesktopDrawer} from './DesktopDrawer/DesktopDrawer';
 export {default as CustomSelect} from './CustomSelect/CustomSelect';
 export {default as DeleteFavoriteIcon} from './DeleteFavoriteIcon/DeleteFavoriteIcon';
+export {default as BaseContainer} from './BaseContainer/BaseContainer';
+export {default as DesktopNavBar} from './DesktopNavbar/DesktopNavBar';
+export {default as MobileNavBar} from './MobileNavbar/MobileNavBar';
+export {default as MobileSearchBar} from './MobileSearchBar/MobileSearchBar';
+export {default as MobileDrawer} from './MobileDrawer/MobileDrawer';

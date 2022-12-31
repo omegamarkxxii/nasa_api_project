@@ -7,7 +7,7 @@ const SideBar = ({setID, sideBarHeading, buttons}) => {
     }
 
     return ( 
-        <Box sx={style.root} >
+        <Box sx={style.base} >
             <Stack spacing={2}>
               <Typography variant="subtitle2" align="center" sx={style.head} >
                 {sideBarHeading}

@@ -2,7 +2,6 @@ import { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { Home, Gallery, MARS, Search } from './pages';
 import { reducer } from './Reducer/reducer';
-import { Container } from '@mui/material';
 import getData from './services/api';
 import initialLocalState from './Constants/initialLocalState';
 import useForm from './hooks/useForm';
@@ -46,15 +45,30 @@ const App = () => {
 
     return ( 
         <BrowserRouter>
-            <Container maxWidth="lg"  sx={{backgroundColor: "grey.50" }} >
-                <Routes>
-                    <Route path="/" exact element={ <Home apod={ astronomyPicOfTheDay } /> } />
-                    <Route path="/apod" element={<Gallery 
+            <Routes>
+                <Route path="/" exact element={ <Home apod={ astronomyPicOfTheDay } /> } />
+                <Route path="/rovers" element={ <MARS  />} />
+                <Route path="/apod" element={<Gallery
+                    dispatch={dispatch}
+                    list={[...state.astronomypicoftheday]}
+                />} />
+                <Route path="/search" element={
+                    <FormContextProvider
+                        formState={formState}
+                        setFormValue={setFormValue}
+                        handleFormSubmit={handleFormSubmit}
+                    >
+                        <Search dispatch={dispatch} /> 
+                    </FormContextProvider>
+                }/>
+            </Routes>
+                {/* <Routes>
+                    <Route path="/" exact element={ <Home apod={ astronomyPicOfTheDay } /> } /> */}
+                    {/* <Route path="/apod" element={<Gallery 
                             list={[
                                 ...state.astronomypicoftheday,
                                 ...state.curiosity
                             ]}
-                            // list={[]}
                             dispatch={dispatch}
                         />} 
                     />
@@ -67,9 +81,8 @@ const App = () => {
                         >
                             <Search dispatch={dispatch} /> 
                         </FormContextProvider>
-                    } />
-                </Routes>
-            </Container >
+                    } /> */}
+                {/* </Routes> */}
         </BrowserRouter>
     );
 }

@@ -1,14 +1,14 @@
 const style = {
-    root: {
+    base: {
         mt:{
-            xs: 7,
-            sm: 8,
+            xs: 0,
+            sm: 0,
             md: 10,
             lg: 10,
             xl: 10
         }
     },
-    box: {
+    wrapperBox: {
         flexGrow: 1,
     },
     btnTypo: {

@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { ImageModal, BaseNavBar, DeleteFavoriteIcon } from '../../components';
-import { Grid, Box,ImageList , ImageListItem, ImageListItemBar, Typography } from "@mui/material";
-import { filterImageURL } from '../../util';
+import { ImageModal, DeleteFavoriteIcon, BaseContainer, DesktopNavBar, MobileNavBar } from '../../components';
+import { Box,ImageList , ImageListItem, ImageListItemBar, Typography } from "@mui/material";
+import { filterImageURL, trimStr } from '../../util';
 import style from './style';
-
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Gallery = ({ list, dispatch }) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const [url, setUrl] = useState('');
     const [title, setTitle] = useState('');
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
 
     const handleOpen = (item) => {
         setOpen(prevState => {
@@ -19,65 +22,47 @@ const Gallery = ({ list, dispatch }) => {
         });
     }
   
-
-    const formatTitle = (name, title) => {
-        let isAstronomyPicOfTheDay = name === "astronomypicoftheday";
-        if(isAstronomyPicOfTheDay) return `${title}`;
-        return `${name}  ${title}`;
-    }
-
     return (
-       <Box sx={style.root}>
+        <BaseContainer>
+            {matches ? <MobileNavBar /> : <DesktopNavBar />}
 
-            {/* base top nav */}
-            <BaseNavBar />
-            
-            {/* gallery content */}
-            <Box sx={style.box}>
-                <Grid container direction="row">
-                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
-                    <Grid item xs={12} sm={12} md={12} lg={10} xl={10} sx={style.grd} >
-                       <ImageList sx={style.imgList}>
-                            {<h1>loading....</h1> && filterImageURL([...list]).map((item, idx) => {
-                                return (
-                                    <ImageListItem key={idx}>
-                                        <img 
-                                            src={`${item.url}?w=248&fit=crop&auto=format`}
-                                            srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                            alt={item.title}
-                                            loading="lazy"
-                                            onClick={() => handleOpen(item)}
-                                            style={{
-                                                cursor: 'pointer'
-                                            }}
-                                        />
-                                        <ImageListItemBar
-                                            sx={style.imgBar} 
-                                            title={
-                                                <Typography variant="subtitle1" sx={style.imgTit}>
-                                                    {formatTitle(item.name, item.title)}
-                                                </Typography>
-                                            }
-                                            position="below"
-                                            actionIcon={ <DeleteFavoriteIcon item={item} dispatch={dispatch} /> }
-                                            subtitle={
-                                                <Typography variant="caption" sx={style.imgSub}>
-                                                    {item.date}
-                                                </Typography>
-                                            }
-                                        />
-                                    </ImageListItem>
-                                )
-                            })}
-                       </ImageList>
-                    </Grid>
-                    <Grid item xs={0} sm={0} md={0} lg={1} xl={1} ></Grid>
-                </Grid>
+            <Box component={"main"} sx={style.base}>
+                <ImageList>
+                    {filterImageURL([...list]).map((item, idx) => {
+                        return (
+                            <ImageListItem key={idx}>
+                                <img 
+                                    src={`${item.url}?w=248&fit=crop&auto=format`}
+                                    srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                    alt={item.title}
+                                    loading="lazy"
+                                    onClick={() => handleOpen(item)}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                                <ImageListItemBar
+                                    sx={style.imgBar} 
+                                    title={
+                                        <Typography variant="subtitle2" sx={style.imgTit}>
+                                            { matches ? trimStr(item.title, 19) : item.title }
+                                        </Typography>
+                                    }
+                                    position="below"
+                                    actionIcon={ <DeleteFavoriteIcon item={item} dispatch={dispatch} /> }
+                                    subtitle={
+                                        <Typography variant="caption" sx={style.imgSub}>
+                                            {item.date}
+                                        </Typography>
+                                    }
+
+                                />
+                            </ImageListItem>
+                            )
+                        })}
+                </ImageList>
             </Box>
 
             {open && <ImageModal handleClose={handleClose} imgUrl={url} imgAlt={title} />}
-
-       </Box>
+        </BaseContainer>
     );
 }
  

@@ -33,7 +33,7 @@ const CollapseList = ({setID, collapseListHeading, listButtons }) => {
                         </Typography>
                     }
                 />
-                {open ? <ExpandLess sx={{pr: 2}} /> : <ExpandMore sx={{pr: 2}} />}
+                {open ? <ExpandLess sx={{pr: 2}} fontSize="large" /> : <ExpandMore sx={{pr: 2}} fontSize="large"  />}
             </ListItemButton>
 
             <Collapse in={open} timeout="auto" unmountOnExit>
@@ -42,7 +42,7 @@ const CollapseList = ({setID, collapseListHeading, listButtons }) => {
                         return (  
                             <ListItemButton key={idx} onClick={() => handleBtnClick(btn.id)} divider sx={style.divider}>
                                 <ListItemIcon>
-                                    <ArrowRightIcon />
+                                    <ArrowRightIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText
                                     disableTypography 

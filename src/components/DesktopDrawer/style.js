@@ -1,10 +1,10 @@
 const style = {
     root: {
-        display: 'flex'
+        display: 'flex',
+        bgcolor: 'grey.50'
     },
     drawer: {
         zIndex: 1000,
-        backgroundColor: 'white',
         width: {
             xs: 100,
             sm: 100,
@@ -43,7 +43,7 @@ const style = {
     },
     imgBox: {
         flexGrow: 1, 
-        bgcolor: 'background.default', 
+        bgcolor: 'grey.50', 
         p: 0.5,
     }
 }

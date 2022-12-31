@@ -1,47 +1,41 @@
-import { useContext } from 'react';
-import { Stack, Box, Button } from "@mui/material";
+import { useContext } from "react";
+import { Box, Grid, Button, Typography, Divider } from "@mui/material";
 import CustomSelect from "../CustomSelect/CustomSelect";
-import searchLabel from "../../Constants/searchLabel";
 import TextFieldSelect from "../TextFieldSelect/TextFieldSelect";
-import FormStateContext from '../../context/FormContext/FormStateContext';
-import HandleFormSubmitContext from '../../context/FormContext/HandleFormSubmitContext';
-import style from './style';
+import FormStateContext from "../../context/FormContext/FormStateContext";
+import HandleFormSubmitContext from "../../context/FormContext/HandleFormSubmitContext";
+import searchLabel from "../../Constants/searchLabel";
 
 const label = searchLabel();
 
-const Form = () => {
+const MobileSearchBar = () => {
     const formState = useContext(FormStateContext);
     const handleFormSubmit = useContext(HandleFormSubmitContext);
 
-
     return ( 
-        <form onSubmit={handleFormSubmit}>
-            <Stack>
+        <form onSubmit={handleFormSubmit} style={{padding: 10}}>
+            <Grid container spacing={1} >
 
-                {/* target select field */}
-                <Box>
-                    <Box sx={style.targetBox}>
-                        <CustomSelect 
-                            select={{
-                                title: "target",
-                                InputLabel: "target-select-label",
-                                id: "target-select",
-                                labelID: "target-select-label",
-                                label: "target",
-                                list: ['astronomypicoftheday','spirit','opportunity', 'curiosity'],
-                                width: 120
-                            }}
-                            value={formState.id}
-                            name={"id"}
-                        />
-                    </Box>
-                </Box>
+                <Grid item xs={12} sm={3} sx={{backgroundColor: 'white'}}>
+                    <CustomSelect 
+                        select={{
+                            title: "target",
+                            InputLabel: "target-select-label",
+                            id: "target-select",
+                            labelID: "target-select-label",
+                            label: "target",
+                            list: ['astronomypicoftheday','spirit','opportunity', 'curiosity'],
+                            width: 120
+                        }}
+                        value={formState.id}
+                        name={"id"}
+                    />
+                </Grid>
 
-                {/* date select field */}
-                <Box sx={style.dateBox}>
-                    <Box sx={style.dateInnerBox}>
-                        {/* year */}
-                        {formState.id === "astronomypicoftheday" &&  
+                <Grid item xs={12} sm={5} sx={{backgroundColor: 'white'}}>
+                    <Box sx={{display: 'flex'}}>
+                         {/* year */}
+                         {formState.id === "astronomypicoftheday" &&  
                             <TextFieldSelect 
                                 list={[...label['astronomypicoftheday'].years]}
                                 width = '40%'
@@ -100,18 +94,27 @@ const Form = () => {
                             name={"day"}
                         />
                     </Box>
-                </Box>
+                </Grid>
 
-                {/* search button */}
-                <Box textAlign="center" sx={style.searchBox}>
-                    <Button type="submit" sx={style.searchBtn} size="medium" variant="outlined" color="primary">
-                        Search
-                    </Button>
-                </Box>
+                <Grid item xs={12} sm={4} sx={{backgroundColor: 'white'}}>
+                    <Box textAlign="center" sx={{mt: 0.8}} >
+                        <Button type="submit" size="medium" variant="outlined" color="primary" sx={{width: "80%"}}>
+                            Search
+                        </Button>
+                    </Box>
+                </Grid>
 
-            </Stack>
+                <Grid item xs={12} sm={12} sx={{backgroundColor: 'white'}}>
+                    <Box sx={{mt: 1}}>
+                        <Typography variant="subtitle2" sx={{textAlign: 'center'}}>
+                            Resources from <span style={{color: 'blue'}}>NASA OPEN API</span>
+                        </Typography>
+                    </Box>
+                </Grid>
+            </Grid>
+            <Divider sx={{mt: 1.5}} />
         </form>
     );
 }
  
-export default Form;
+export default MobileSearchBar;

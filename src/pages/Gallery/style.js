@@ -1,36 +1,40 @@
 const style = {
-    root: {
-        backgroundColor: 'grey.50',
-        width: '100%',
+    base: {
         mt: {
-            xs: 7,
-            sm: 8,
+            xs: -2,
+            sm: -2,
             md: 8,
             lg: 8,
             xl: 8
         }
     },
-    box: {
-        flexGrow: 1
-    },
-    grd: {
-        border: "1px solid #e3e3e3",
-        paddingLeft: 1,
-        paddingRight: 1,
-    },
     imgList: {
         width: '100%'
     },
     imgBar: {
-        backgroundColor: 'grey.900', 
-        color: 'grey.50'
+        borderBottom: '1px solid #bbbec4',
+        borderLeft: '1px solid #bbbec4',
+        borderRight: '1px solid #bbbec4',
+        color: 'grey.800'
     },
     imgTit: {
-        fontSize: "0.9rem",
+        fontSize: {
+            xs: "0.7rem",
+            sm: "0.7rem",
+            md: "0.9rem",
+            lg: "0.9rem",
+            xl: "0.9rem"
+        },
         ml: 1
     },
     imgSub: {
-        fontSize: 12, 
+        fontSize: {
+            xs: 10,
+            sm: 10,
+            md: 12,
+            lg: 12,
+            xl: 12
+        }, 
         ml: 1
     }
 }

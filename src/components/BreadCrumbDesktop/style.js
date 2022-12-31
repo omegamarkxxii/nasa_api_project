@@ -1,11 +1,9 @@
 const style = {
-    root: {
+    base: {
         mr: {
-            xs: 3, 
-            sm: 3, 
-            md: 3, 
-            lg: 9, 
-            xl: 9 
+            md: 0, 
+            lg: 8, 
+            xl: 8 
         }
     },
     icon: {
