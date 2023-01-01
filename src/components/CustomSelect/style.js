@@ -1,5 +1,5 @@
 const style = {
-    root: {
+    base: {
         p: 0.5,
     },
     selBar: {

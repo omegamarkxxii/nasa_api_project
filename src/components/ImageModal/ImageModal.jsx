@@ -5,7 +5,7 @@ import style from './style';
 const ImageModal = ({handleClose, imgUrl, imgAlt}) => {
 
     return ( 
-        <Box sx={style.root} >
+        <Box sx={style.base} >
 
             <IconButton aria-label="close" onClick={handleClose} sx={style.clsBtn}  size='large'>
                 <CloseIcon />

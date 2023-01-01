@@ -18,7 +18,7 @@ const CollapseList = ({setID, collapseListHeading, listButtons }) => {
     return ( 
         <List
             disablePadding
-            sx={style.root}
+            sx={style.base}
             component="nav"
             aria-labelledby="nested-rover-list"
         >
@@ -26,14 +26,12 @@ const CollapseList = ({setID, collapseListHeading, listButtons }) => {
                 <ListItemText
                     disableTypography 
                     primary={
-                        <Typography variant='button'
-                            sx={{color: 'grey.800', pl: 2}}
-                        >
+                        <Typography variant='button' sx={style.listHead}>
                             {collapseListHeading}
                         </Typography>
                     }
                 />
-                {open ? <ExpandLess sx={{pr: 2}} fontSize="large" /> : <ExpandMore sx={{pr: 2}} fontSize="large"  />}
+                {open ? <ExpandLess sx={style.exp} fontSize="large" /> : <ExpandMore sx={style.exp} fontSize="large"  />}
             </ListItemButton>
 
             <Collapse in={open} timeout="auto" unmountOnExit>

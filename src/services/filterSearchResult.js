@@ -1,7 +1,8 @@
 const ASTRONOMY_PIC_OF_THE_DAY = "astronomypicoftheday";
+const ID = 'apod';
 
 const filterSearchResult = (id, data) => {
-    if(id === "apod") {
+    if(id === ID) {
         if(!data?.url) return [];
         return [{
             id: data.date,

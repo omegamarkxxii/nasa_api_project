@@ -1,5 +1,5 @@
 const style = {
-    root: {
+    base: {
         ml:{
             xs: 4,
             sm: 4,

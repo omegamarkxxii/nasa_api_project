@@ -7,7 +7,7 @@ import style from './style';
 const ImageGallery = ({items, handleOpen, dispatch}) => {
 
     return ( 
-        <ImageList sx={style.root} gap={6}>
+        <ImageList sx={style.base} gap={6}>
             {filterImageURL([...items]).map((item, idx) => {
                 return (
                     <ImageListItem key={idx}>

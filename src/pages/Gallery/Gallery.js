@@ -37,7 +37,7 @@ const Gallery = ({ list, dispatch }) => {
                                     alt={item.title}
                                     loading="lazy"
                                     onClick={() => handleOpen(item)}
-                                    style={{ cursor: 'pointer' }}
+                                    style={style.img}
                                 />
                                 <ImageListItemBar
                                     sx={style.imgBar} 

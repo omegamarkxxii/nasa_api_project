@@ -1,5 +1,5 @@
 const style = {
-    root: {
+    base: {
         display: 'flex',
         bgcolor: 'grey.50'
     },

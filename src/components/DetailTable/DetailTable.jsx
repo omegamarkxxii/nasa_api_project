@@ -3,7 +3,7 @@ import style from './style';
 
 const DetailTable = ({tableContent}) => {
     return ( 
-        <Paper variant="outlined" sx={style.root}>
+        <Paper variant="outlined" sx={style.base}>
             <TableContainer>
                 <Table size="medium" sx={style.table} aria-label="rover info table">
                     <TableBody>

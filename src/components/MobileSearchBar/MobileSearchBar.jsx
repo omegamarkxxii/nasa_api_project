@@ -5,18 +5,23 @@ import TextFieldSelect from "../TextFieldSelect/TextFieldSelect";
 import FormStateContext from "../../context/FormContext/FormStateContext";
 import HandleFormSubmitContext from "../../context/FormContext/HandleFormSubmitContext";
 import searchLabel from "../../Constants/searchLabel";
+import style from './style';
 
 const label = searchLabel();
+const TARGET_DEFAULT_WIDTH = 120;
+const YEAR_DEFAULT_WIDTH = '40%';
+const MONTH_DEFAULT_WIDTH = '30%';
+const DAY_DEFAULT_WIDTH = '30%';
 
 const MobileSearchBar = () => {
     const formState = useContext(FormStateContext);
     const handleFormSubmit = useContext(HandleFormSubmitContext);
 
     return ( 
-        <form onSubmit={handleFormSubmit} style={{padding: 10}}>
+        <form onSubmit={handleFormSubmit} style={style.form}>
             <Grid container spacing={1} >
 
-                <Grid item xs={12} sm={3} sx={{backgroundColor: 'white'}}>
+                <Grid item xs={12} sm={3} >
                     <CustomSelect 
                         select={{
                             title: "target",
@@ -25,41 +30,41 @@ const MobileSearchBar = () => {
                             labelID: "target-select-label",
                             label: "target",
                             list: ['astronomypicoftheday','spirit','opportunity', 'curiosity'],
-                            width: 120
+                            width: TARGET_DEFAULT_WIDTH
                         }}
                         value={formState.id}
                         name={"id"}
                     />
                 </Grid>
 
-                <Grid item xs={12} sm={5} sx={{backgroundColor: 'white'}}>
-                    <Box sx={{display: 'flex'}}>
+                <Grid item xs={12} sm={5} >
+                    <Box sx={style.yearWrapper}>
                          {/* year */}
                          {formState.id === "astronomypicoftheday" &&  
                             <TextFieldSelect 
                                 list={[...label['astronomypicoftheday'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH }
                                 name={"year"}
                             />
                         }
                         {formState.id === "spirit" &&  
                             <TextFieldSelect 
                                 list={[...label['spirit'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH }
                                 name={"year"}
                             />
                         }
                         {formState.id === "opportunity" &&  
                             <TextFieldSelect 
                                 list={[...label['opportunity'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH }
                                 name={"year"}
                             />
                         }
                         {formState.id === "curiosity" &&  
                             <TextFieldSelect 
                                 list={[...label['curiosity'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH }
                                 name={"year"}
                             />
                         }
@@ -73,7 +78,7 @@ const MobileSearchBar = () => {
                                 labelID: "month-select-label",
                                 label: "month",
                                 list: [...label["months"]],
-                                width: "30%"
+                                width: MONTH_DEFAULT_WIDTH
                             }}
                             value={formState.month}
                             name={"month"}
@@ -88,7 +93,7 @@ const MobileSearchBar = () => {
                                 labelID: "day-select-label",
                                 label: "day",
                                 list: [...label["days"]],
-                                width: "30%"
+                                width: DAY_DEFAULT_WIDTH
                             }}
                             value={formState.day}
                             name={"day"}
@@ -96,23 +101,23 @@ const MobileSearchBar = () => {
                     </Box>
                 </Grid>
 
-                <Grid item xs={12} sm={4} sx={{backgroundColor: 'white'}}>
-                    <Box textAlign="center" sx={{mt: 0.8}} >
-                        <Button type="submit" size="medium" variant="outlined" color="primary" sx={{width: "80%"}}>
+                <Grid item xs={12} sm={4} >
+                    <Box textAlign="center" sx={style.btnWrapper} >
+                        <Button type="submit" size="medium" variant="outlined" color="primary" sx={style.subBtn}>
                             Search
                         </Button>
                     </Box>
                 </Grid>
 
-                <Grid item xs={12} sm={12} sx={{backgroundColor: 'white'}}>
-                    <Box sx={{mt: 1}}>
-                        <Typography variant="subtitle2" sx={{textAlign: 'center'}}>
-                            Resources from <span style={{color: 'blue'}}>NASA OPEN API</span>
+                <Grid item xs={12} sm={12} >
+                    <Box sx={style.capWrapper}>
+                        <Typography variant="subtitle2" sx={style.capText}>
+                            Resources from <span style={style.capSpan}>NASA OPEN API</span>
                         </Typography>
                     </Box>
                 </Grid>
             </Grid>
-            <Divider sx={{mt: 1.5}} />
+            <Divider sx={style.div} />
         </form>
     );
 }

@@ -1,11 +1,12 @@
-import { useContext } from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import FormSetValueContext from "../../context/FormContext/FormSetValueContext";
 import style from './style';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
+const DEFAULT_WIDTH = 120;
+
 
 const TextFieldSelect = ({list, width, name}) => {
     const setFormValue = useContext(FormSetValueContext);
@@ -18,7 +19,7 @@ const TextFieldSelect = ({list, width, name}) => {
     }
 
     return ( 
-        <Box sx={{ minWidth: width || 120, ...style.txtField}}>
+        <Box sx={{ minWidth: width || DEFAULT_WIDTH, ...style.txtField}}>
             <FormControl fullWidth >
                 <InputLabel id={'year-select-label'}>year</InputLabel>
                 <Select

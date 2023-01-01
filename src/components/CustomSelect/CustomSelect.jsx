@@ -5,6 +5,7 @@ import style from './style';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
+const defaultWidth = 120;
 
 const CustomSelect = ({select, value, name}) => {
     const setFormValue = useContext(FormSetValueContext);
@@ -14,7 +15,7 @@ const CustomSelect = ({select, value, name}) => {
     }
 
     return ( 
-        <Box sx={{ minWidth: select.width || 120, ...style.root}}>
+        <Box sx={{ minWidth: select.width || defaultWidth, ...style.base}}>
             <FormControl fullWidth >
                 <InputLabel id={select.inputLabel}>{select.title}</InputLabel>
                 <Select

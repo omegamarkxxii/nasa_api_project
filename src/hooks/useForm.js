@@ -7,17 +7,9 @@ import filterSearchResult from '../services/filterSearchResult';
 import { regexMatchMarsURl } from '../util';
 
 const label = searchLabel();
-const initialFormState = {
-    id: 'astronomypicoftheday',
-    year: '1996',
-    month: 1,
-    day: 1,
-    url_path: '',
-    search_result: []
-};
 
-const useForm = () => {
-    const [formState, setFormState] = useState(initialFormState);
+const useForm = (initialValue) => {
+    const [formState, setFormState] = useState(initialValue);
 
     const setFormValue = (name, value) => {
         setFormState(prevState => {

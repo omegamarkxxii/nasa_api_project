@@ -8,6 +8,10 @@ import HandleFormSubmitContext from '../../context/FormContext/HandleFormSubmitC
 import style from './style';
 
 const label = searchLabel();
+const TARGET_DEFAULT_WIDTH = 120;
+const YEAR_DEFAULT_WIDTH = '40%';
+const MONTH_DEFAULT_WIDTH = '30%';
+const DAY_DEFAULT_WIDTH = '30%';
 
 const Form = () => {
     const formState = useContext(FormStateContext);
@@ -29,7 +33,7 @@ const Form = () => {
                                 labelID: "target-select-label",
                                 label: "target",
                                 list: ['astronomypicoftheday','spirit','opportunity', 'curiosity'],
-                                width: 120
+                                width: TARGET_DEFAULT_WIDTH
                             }}
                             value={formState.id}
                             name={"id"}
@@ -44,28 +48,28 @@ const Form = () => {
                         {formState.id === "astronomypicoftheday" &&  
                             <TextFieldSelect 
                                 list={[...label['astronomypicoftheday'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH }
                                 name={"year"}
                             />
                         }
                         {formState.id === "spirit" &&  
                             <TextFieldSelect 
                                 list={[...label['spirit'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH }
                                 name={"year"}
                             />
                         }
                         {formState.id === "opportunity" &&  
                             <TextFieldSelect 
                                 list={[...label['opportunity'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH } 
                                 name={"year"}
                             />
                         }
                         {formState.id === "curiosity" &&  
                             <TextFieldSelect 
                                 list={[...label['curiosity'].years]}
-                                width = '40%'
+                                width = { YEAR_DEFAULT_WIDTH }
                                 name={"year"}
                             />
                         }
@@ -79,7 +83,7 @@ const Form = () => {
                                 labelID: "month-select-label",
                                 label: "month",
                                 list: [...label["months"]],
-                                width: "30%"
+                                width: MONTH_DEFAULT_WIDTH
                             }}
                             value={formState.month}
                             name={"month"}
@@ -94,7 +98,7 @@ const Form = () => {
                                 labelID: "day-select-label",
                                 label: "day",
                                 list: [...label["days"]],
-                                width: "30%"
+                                width: DAY_DEFAULT_WIDTH
                             }}
                             value={formState.day}
                             name={"day"}

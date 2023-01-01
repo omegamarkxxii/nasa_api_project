@@ -1,5 +1,5 @@
 const style = {
-    root: {
+    base: {
         width: '100%', 
         maxWidth: "100%", 
         bgcolor: 'background.paper',
@@ -10,6 +10,13 @@ const style = {
     },
     divider: {
         pl: 4 
+    },
+    listHead: {
+        color: 'grey.800',
+        pl: 2
+    },
+    exp: {
+        pr: 2
     }
 }
 

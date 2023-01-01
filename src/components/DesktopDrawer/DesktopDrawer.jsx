@@ -23,7 +23,7 @@ const DesktopDrawer = ({dispatch}) => {
 
     return ( 
         <>
-            <Box sx={style.root}>
+            <Box sx={style.base}>
                 <CssBaseline />
                 <Drawer sx={style.drawer} variant="permanent" anchor="left" hideBackdrop >
                     <Toolbar />

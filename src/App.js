@@ -4,6 +4,7 @@ import { Home, Gallery, MARS, Search } from './pages';
 import { reducer } from './Reducer/reducer';
 import getData from './services/api';
 import initialLocalState from './Constants/initialLocalState';
+import initialFormState from './Constants/InitialFormState';
 import useForm from './hooks/useForm';
 import useLocalStorage from './hooks/useLocalStorage';
 import FormContextProvider from './context/FormContext/FormContextProvider';
@@ -12,27 +13,27 @@ import FormContextProvider from './context/FormContext/FormContextProvider';
 const App = () => {
     const [local, setLocal]= useLocalStorage('nasa-api', initialLocalState);
     const [state, dispatch] = useReducer(reducer, {...local});
-    const {formState, setFormValue, handleFormSubmit} = useForm();
+    const {formState, setFormValue, handleFormSubmit} = useForm(initialFormState);
     const [astronomyPicOfTheDay, setAstronomyPicOfTheDay] = useState('');
 
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     const signal = controller.signal;
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
 
-    //     getData('planetary/apod', {method: 'get', signal: signal})
-    //         .then(res => res.data)
-    //         .then(data => {
-    //             setAstronomyPicOfTheDay(data);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
+        getData('planetary/apod', {method: 'get', signal: signal})
+            .then(res => res.data)
+            .then(data => {
+                setAstronomyPicOfTheDay(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
-    //     return () => {
-    //         controller.abort();
-    //     }
-    // }, []);
+        return () => {
+            controller.abort();
+        }
+    }, []);
 
 
     useEffect(() => {
@@ -50,7 +51,9 @@ const App = () => {
                 <Route path="/rovers" element={ <MARS  />} />
                 <Route path="/apod" element={<Gallery
                     dispatch={dispatch}
-                    list={[...state.astronomypicoftheday]}
+                    list={[
+                        ...state.astronomypicoftheday
+                    ]}
                 />} />
                 <Route path="/search" element={
                     <FormContextProvider
@@ -62,27 +65,6 @@ const App = () => {
                     </FormContextProvider>
                 }/>
             </Routes>
-                {/* <Routes>
-                    <Route path="/" exact element={ <Home apod={ astronomyPicOfTheDay } /> } /> */}
-                    {/* <Route path="/apod" element={<Gallery 
-                            list={[
-                                ...state.astronomypicoftheday,
-                                ...state.curiosity
-                            ]}
-                            dispatch={dispatch}
-                        />} 
-                    />
-                    <Route path="/rovers" element={ <MARS  />} />
-                    <Route path="/search" element={ 
-                        <FormContextProvider 
-                            formState={formState} 
-                            setFormValue={setFormValue} 
-                            handleFormSubmit={handleFormSubmit}
-                        >
-                            <Search dispatch={dispatch} /> 
-                        </FormContextProvider>
-                    } /> */}
-                {/* </Routes> */}
         </BrowserRouter>
     );
 }

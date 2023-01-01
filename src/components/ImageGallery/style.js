@@ -1,5 +1,5 @@
 const style = {
-    root: {
+    base: {
         width: '100%' 
     },
     img: {

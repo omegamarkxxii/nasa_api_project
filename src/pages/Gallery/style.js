@@ -11,6 +11,9 @@ const style = {
     imgList: {
         width: '100%'
     },
+    img: {
+        cursor: 'pointer'
+    },
     imgBar: {
         borderBottom: '1px solid #bbbec4',
         borderLeft: '1px solid #bbbec4',
