@@ -1,7 +1,7 @@
 import { ImageList, ImageListItem, ImageListItemBar, Typography } from "@mui/material";
-import { filterImageURL } from "../../util";
+import { filterImageURL } from "../../util/util";
 import FavoriteIconBtn from '../FavoriteIconBtn/FavoriteIconBtn';
-import { trimStr } from "../../util";
+import { trimStr } from "../../util/util";
 import style from './style';
 
 const ImageGallery = ({items, handleOpen, dispatch}) => {

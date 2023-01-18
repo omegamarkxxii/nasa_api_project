@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { ImageCard, BaseContainer, DesktopNavBar, MobileNavBar } from '../../components';
-import { setURL } from '../../util';
+import { setURL } from '../../util/util';
 import nasaimg from '../../images/nasa_1.jpg';
 import style from './style';
 import { useTheme } from '@mui/material/styles';

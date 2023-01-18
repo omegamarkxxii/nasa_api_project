@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ImageModal, DeleteFavoriteIcon, BaseContainer, DesktopNavBar, MobileNavBar } from '../../components';
 import { Box,ImageList , ImageListItem, ImageListItemBar, Typography } from "@mui/material";
-import { filterImageURL, trimStr } from '../../util';
+import { filterImageURL, trimStr } from '../../util/util';
 import style from './style';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
