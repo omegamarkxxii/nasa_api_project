@@ -6,19 +6,19 @@ import style from './style';
 
 const FavoriteIconBtn = ({item, dispatch}) => {
     const [likeBtn, setLikeBtn] = useState(false);
+
     const handleClick = () => {
         if(!likeBtn === true) {
             dispatch({type: 'SAVE_IMAGE', payload: item});
         } else {
-            console.log('delete image');
             dispatch({type: 'DELETE_IMAGE', payload: item});
         }
         setLikeBtn(!likeBtn);
     }
 
     return ( 
-        <IconButton  aria-label={`info about ${item.title}`} onClick={handleClick}>
-            {likeBtn === true ? <FavoriteIcon sx={style.icon} /> : <FavoriteBorderIcon sx={style.icon} />}
+        <IconButton  aria-label={`favorite button icon`} onClick={handleClick}>
+            {likeBtn ? <FavoriteIcon sx={style.icon} /> : <FavoriteBorderIcon sx={style.icon} />}
         </IconButton>
     );
 }

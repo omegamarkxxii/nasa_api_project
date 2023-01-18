@@ -5,7 +5,7 @@ const BaseContainer = ({ children }) => {
     return ( 
         <>
             <CssBaseline />
-            <Container maxWidth="lg" disableGutters sx={style.container}>
+            <Container role="base-container" data-testid="base-wrapper" maxWidth="lg" disableGutters sx={style.container}>
                 {children}
             </Container>
         </>

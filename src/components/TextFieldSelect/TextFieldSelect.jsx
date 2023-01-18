@@ -12,17 +12,18 @@ const TextFieldSelect = ({list, width, name}) => {
     const setFormValue = useContext(FormSetValueContext);
     const [value, setValue] = useState(list[0]);
     const handleChange = (e) => {
-        setValue(() => {
-            setFormValue(e.target.name, e.target.value);
-            return e.target.value;
-        });
+        setFormValue(name, e.target.value);
+        setValue(e.target.value);
     }
 
+
+
     return ( 
-        <Box sx={{ minWidth: width || DEFAULT_WIDTH, ...style.txtField}}>
+        <Box data-testid="text-field-select" sx={{ minWidth: width || DEFAULT_WIDTH, ...style.txtField}}>
             <FormControl fullWidth >
-                <InputLabel id={'year-select-label'}>year</InputLabel>
+                <InputLabel role="label" id={'year-select-label'}>year</InputLabel>
                 <Select
+                    role="select"
                     name={name}
                     variant='outlined'
                     labelId="year-select-label"
@@ -39,7 +40,6 @@ const TextFieldSelect = ({list, width, name}) => {
                         }
                     }}
                     sx={style.selbar}
-
                 >
                     {list?.map((item, idx) => {
                         return (

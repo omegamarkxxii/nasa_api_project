@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+ import { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { Home, Gallery, MARS, Search } from './pages';
 import { reducer } from './Reducer/reducer';
@@ -17,23 +17,23 @@ const App = () => {
     const [astronomyPicOfTheDay, setAstronomyPicOfTheDay] = useState('');
 
 
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
+    // useEffect(() => {
+    //     const controller = new AbortController();
+    //     const signal = controller.signal;
 
-        getData('planetary/apod', {method: 'get', signal: signal})
-            .then(res => res.data)
-            .then(data => {
-                setAstronomyPicOfTheDay(data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    //     getData('planetary/apod', {method: 'get', signal: signal})
+    //         .then(res => res.data)
+    //         .then(data => {
+    //             setAstronomyPicOfTheDay(data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
 
-        return () => {
-            controller.abort();
-        }
-    }, []);
+    //     return () => {
+    //         controller.abort();
+    //     }
+    // }, []);
 
 
     useEffect(() => {
