@@ -26,7 +26,7 @@ const Gallery = ({ list, dispatch }) => {
         <BaseContainer>
             {matches ? <MobileNavBar /> : <DesktopNavBar />}
 
-            <Box component={"main"} sx={style.base}>
+            <Box component={"main"} sx={style.base} data-testid="gallery-page">
                 <ImageList>
                     {filterImageURL([...list]).map((item, idx) => {
                         return (

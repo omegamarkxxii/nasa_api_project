@@ -24,8 +24,8 @@ const MARS = () => {
       <BaseContainer>
         {matches ? <MobileNavBar /> : <DesktopNavBar />}
 
-        <Box component={"main"} sx={style.base} >
-          <Box comsponent="section" sx={style.wrapperBox}>
+        <Box component={"main"} sx={style.base} data-testid="rover-page" >
+          <Box component="section" sx={style.wrapperBox}>
             <Grid container spacing={2} direction="row">
               {/* nav button */}
               <Grid item xs={12} sm={12} md={2} lg={2} xl={2} >

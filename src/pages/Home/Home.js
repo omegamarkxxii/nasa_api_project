@@ -19,7 +19,7 @@ const Home = ({apod}) => {
         <BaseContainer>
             {matches ? <MobileNavBar /> : <DesktopNavBar />}
         
-            <Box component="main" sx={style.imgWrapper} >
+            <Box component="main" sx={style.imgWrapper} role="main">
                 <ImageCard
                     maxWidth={imgmaxWidth}
                     imgHeight={imgHeight}
