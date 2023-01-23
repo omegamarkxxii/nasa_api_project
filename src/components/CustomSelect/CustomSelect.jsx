@@ -1,21 +1,23 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import FormSetValueContext from '../../context/FormContext/FormSetValueContext';
 import style from './style';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
-const defaultWidth = 120;
+const DEFAULT_WIDTH = 120;
 
-const CustomSelect = ({select, value, name}) => {
+const CustomSelect = ({select, name}) => {
     const setFormValue = useContext(FormSetValueContext);
+    const [value, setValue] = useState(select.list[0]);
 
     const handleChange = (e) => {
         setFormValue(e.target.name, e.target.value);
+        setValue(e.target.value);
     }
 
     return ( 
-        <Box sx={{ minWidth: select.width || defaultWidth, ...style.base}}>
+        <Box sx={{ minWidth: select.width || DEFAULT_WIDTH, ...style.base}} data-testid="custom-select">
             <FormControl fullWidth >
                 <InputLabel id={select.inputLabel}>{select.title}</InputLabel>
                 <Select

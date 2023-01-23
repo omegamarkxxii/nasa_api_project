@@ -23,14 +23,14 @@ const DesktopDrawer = ({dispatch}) => {
 
     return ( 
         <>
-            <Box sx={style.base}>
+            <Box sx={style.base} data-testid="desktop-drawer">
                 <CssBaseline />
                 <Drawer sx={style.drawer} variant="permanent" anchor="left" hideBackdrop >
                     <Toolbar />
                     <Box component="main" sx={style.capBox}>
                         <Paper square variant="outlined" sx={style.capPaper}>
                             <Form />
-                            <Typography variant="subtitle2" sx={style.capText}>
+                            <Typography variant="subtitle2" sx={style.capText} data-testid="resource-caption">
                                 Resources from <span style={style.capSpan}>NASA OPEN API</span>
                             </Typography>
                         </Paper>

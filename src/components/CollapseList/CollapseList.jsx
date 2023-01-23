@@ -38,7 +38,7 @@ const CollapseList = ({setID, collapseListHeading, listButtons }) => {
                 <List component="div" disablePadding>
                     {listButtons.map((btn ,idx) => {
                         return (  
-                            <ListItemButton key={idx} onClick={() => handleBtnClick(btn.id)} divider sx={style.divider}>
+                            <ListItemButton key={idx} onClick={() => setID(btn.id)} divider sx={style.divider}>
                                 <ListItemIcon>
                                     <ArrowRightIcon fontSize="small" />
                                 </ListItemIcon>

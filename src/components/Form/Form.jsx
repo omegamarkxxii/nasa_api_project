@@ -19,7 +19,7 @@ const Form = () => {
 
 
     return ( 
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} role="form">
             <Stack>
 
                 {/* target select field */}
@@ -35,7 +35,6 @@ const Form = () => {
                                 list: ['astronomypicoftheday','spirit','opportunity', 'curiosity'],
                                 width: TARGET_DEFAULT_WIDTH
                             }}
-                            value={formState.id}
                             name={"id"}
                         />
                     </Box>
@@ -85,7 +84,6 @@ const Form = () => {
                                 list: [...label["months"]],
                                 width: MONTH_DEFAULT_WIDTH
                             }}
-                            value={formState.month}
                             name={"month"}
                         />
 
@@ -100,7 +98,6 @@ const Form = () => {
                                 list: [...label["days"]],
                                 width: DAY_DEFAULT_WIDTH
                             }}
-                            value={formState.day}
                             name={"day"}
                         />
                     </Box>
