@@ -19,7 +19,7 @@ const Form = () => {
 
 
     return ( 
-        <form onSubmit={handleFormSubmit} role="form">
+        <form onSubmit={handleFormSubmit} data-testid="form">
             <Stack>
 
                 {/* target select field */}

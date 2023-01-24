@@ -6,7 +6,7 @@ import style from './style';
 
 const DesktopNavbar = () => {
     return ( 
-        <Box component={"nav"}>
+        <Box component={"nav"} data-testid="desktop-navbar">
             <AppBar position="fixed" sx={style.base}>
                 <Toolbar>
                     <Box sx={style.logoWrapper}>

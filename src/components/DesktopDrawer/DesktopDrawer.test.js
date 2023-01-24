@@ -48,8 +48,7 @@ test("page should have rendered form element", () => {
             <DesktopDrawer dispatch={ mockDispatch } />
         </FormContextProvider>
     );
-    screen.debug();
-    const formElement = screen.getByRole("form");
+    const formElement = screen.getByTestId("form");
     expect(formElement).toBeInTheDocument();
 })
 
