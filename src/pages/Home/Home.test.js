@@ -1,6 +1,5 @@
 import {render, screen} from "@testing-library/react";
-import { MemoryRouter, BrowserRouter } from "react-router-dom";
-import user from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import Home from "./Home";
 
 test("render correctly", () => {
@@ -12,15 +11,11 @@ test("render correctly", () => {
     expect(screen.getByRole("main")).toBeInTheDocument();
 })
 
-// test("when rover link is clicked should navigate to rover page", async () => {
+// test("should make a get request and render a astronomy picture of the day", () => {
 //     render(
-//         <BrowserRouter>
+//         <MemoryRouter>
 //             <Home />
-//         </BrowserRouter>
+//         </MemoryRouter>
 //     );
-
-//     await user.click(screen.getByRole("link", {name: "Rovers"}));
 //     screen.debug();
-//     console.log(window.location.pathname);
-//     const rover = screen.getByRole("rover-wrapper");
 // })

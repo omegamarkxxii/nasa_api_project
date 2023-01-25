@@ -17,23 +17,23 @@ const App = () => {
     const [astronomyPicOfTheDay, setAstronomyPicOfTheDay] = useState('');
 
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     const signal = controller.signal;
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
 
-    //     getData('planetary/apod', {method: 'get', signal: signal})
-    //         .then(res => res.data)
-    //         .then(data => {
-    //             setAstronomyPicOfTheDay(data);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
+        getData('planetary/apod', {method: 'get', signal: signal})
+            .then(res => res.data)
+            .then(data => {
+                setAstronomyPicOfTheDay(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
-    //     return () => {
-    //         controller.abort();
-    //     }
-    // }, []);
+        return () => {
+            controller.abort();
+        }
+    }, []);
 
 
     useEffect(() => {

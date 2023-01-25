@@ -24,7 +24,7 @@ const MobileNavBar = () => {
         <>
             <CssBaseline />
             <HideOnScroll>
-                <AppBar sx={style.base}>
+                <AppBar sx={style.base} data-testid="mobile-nav-bar">
                     <Toolbar>
                         <Box sx={style.logoWrapper}>
                             <IconButton component={RouterLink} to="/" aria-label="home button">

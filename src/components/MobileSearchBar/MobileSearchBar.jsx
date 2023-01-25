@@ -18,7 +18,7 @@ const MobileSearchBar = () => {
     const handleFormSubmit = useContext(HandleFormSubmitContext);
 
     return ( 
-        <form onSubmit={handleFormSubmit} style={style.form}>
+        <form onSubmit={handleFormSubmit} style={style.form} data-testid="mobile-search-bar">
             <Grid container spacing={1} >
 
                 <Grid item xs={12} sm={3} >
@@ -30,7 +30,7 @@ const MobileSearchBar = () => {
                             labelID: "target-select-label",
                             label: "target",
                             list: ['astronomypicoftheday','spirit','opportunity', 'curiosity'],
-                            width: TARGET_DEFAULT_WIDTH
+                            width: TARGET_DEFAULT_WIDTH || 120
                         }}
                         value={formState.id}
                         name={"id"}
