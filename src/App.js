@@ -21,25 +21,25 @@ const App = () => {
         const controller = new AbortController();
         const signal = controller.signal;
 
-        getData('planetary/apod', {method: 'get', signal: signal})
-            .then(res => res.data)
-            .then(data => {
-                setAstronomyPicOfTheDay(data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+       getData(`/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}`, { signal })
+        .then(res =>  res.json())
+        .then(data => {
+            setAstronomyPicOfTheDay(data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
         return () => {
             controller.abort();
         }
     }, []);
 
-
+    
     useEffect(() => {
-        console.log('state', state);
-        console.log('local stored');
-        console.count();
+        // console.log('state', state);
+        // console.log('local stored');
+        // console.count();
         setLocal(state);
     }, [state, setLocal]);
 

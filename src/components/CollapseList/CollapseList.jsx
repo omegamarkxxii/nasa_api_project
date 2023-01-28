@@ -11,10 +11,6 @@ const CollapseList = ({setID, collapseListHeading, listButtons }) => {
         setOpen(!open);
     };
 
-    const handleBtnClick = (id) => {
-        setID(id);
-    };
-
     return ( 
         <List
             disablePadding

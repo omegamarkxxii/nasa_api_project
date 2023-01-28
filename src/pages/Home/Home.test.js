@@ -10,12 +10,3 @@ test("render correctly", () => {
     );
     expect(screen.getByRole("main")).toBeInTheDocument();
 })
-
-// test("should make a get request and render a astronomy picture of the day", () => {
-//     render(
-//         <MemoryRouter>
-//             <Home />
-//         </MemoryRouter>
-//     );
-//     screen.debug();
-// })

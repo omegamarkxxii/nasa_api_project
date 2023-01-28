@@ -23,7 +23,7 @@ const MobileDrawer = ({ dispatch }) => {
 
     return ( 
         <Box component="main" >
-            {/* <MobileSearchBar /> */}
+            <MobileSearchBar />
 
             <Box data-testid="image-box">
                 <ImageGallery items={formState.search_result} handleOpen={handleOpen} dispatch={dispatch} />

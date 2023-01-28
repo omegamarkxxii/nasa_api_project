@@ -36,17 +36,20 @@ const useForm = (initialValue) => {
         const targetID = regexMatchMarsURl(formState.url_path) ? "mars" : "apod";
         const controller = new AbortController();
         const signal = controller.signal;
-        getData(formState.url_path, {signal: signal})
-            .then(res => res.data)
+    
+        getData(formState.url_path, { signal })
+            .then(res =>  res.json())
             .then(data => {
                 const filteredData = filterSearchResult(targetID, data);
                 setFormState(prevState => {
                     return {...prevState, search_result: filteredData};
                 });
+                console.log(data);
             })
             .catch(err => {
                 console.log(err);
             })
+    
 
     }, [formState.url_path]);
     

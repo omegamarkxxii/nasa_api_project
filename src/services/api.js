@@ -1,23 +1,15 @@
-import axios from "axios";
-
-const BASE_URL = 'https://api.nasa.gov/';
+const BASE_URL = 'https://api.nasa.gov';
 
 const getData = async (url, option = {}) => {
     try {
-        const res = await axios({
-            method: option.method || 'get',
-            baseURL: BASE_URL,
-            url: url,
-            params: {
-                ...option.params,
-                api_key: process.env.REACT_APP_NASA_API_KEY
-            },
+        const res = await fetch(`${BASE_URL}${url}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
             signal: option.signal
         })
-
         return res;
     } catch (err) {
-        return err.response;
+        return err;
     }
 }
 
