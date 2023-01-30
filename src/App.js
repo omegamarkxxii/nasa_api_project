@@ -5,8 +5,8 @@ import { reducer } from './Reducer/reducer';
 import getData from './services/api';
 import initialLocalState from './Constants/initialLocalState';
 import initialFormState from './Constants/InitialFormState';
-import useForm from './hooks/useForm';
-import useLocalStorage from './hooks/useLocalStorage';
+import useForm from './hooks/useForm/useForm';
+import useLocalStorage from './hooks/UseLocalStorage/useLocalStorage';
 import FormContextProvider from './context/FormContext/FormContextProvider';
 
 
